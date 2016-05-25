@@ -44,7 +44,7 @@
             this.tabPageAbfahrt = new System.Windows.Forms.TabPage();
             this.buttonVerbindungSuchenAbfahrtsplan = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelAbfahrsplan = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -112,15 +112,16 @@
             // 
             this.tableLayoutPanelVerbindungen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanelVerbindungen.ColumnCount = 3;
-            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168F));
+            this.tableLayoutPanelVerbindungen.ColumnCount = 4;
+            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelVerbindungen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanelVerbindungen.Location = new System.Drawing.Point(14, 176);
             this.tableLayoutPanelVerbindungen.Name = "tableLayoutPanelVerbindungen";
             this.tableLayoutPanelVerbindungen.RowCount = 2;
             this.tableLayoutPanelVerbindungen.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelVerbindungen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelVerbindungen.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelVerbindungen.Size = new System.Drawing.Size(602, 193);
             this.tableLayoutPanelVerbindungen.TabIndex = 9;
             // 
@@ -196,7 +197,7 @@
             // 
             this.tabPageAbfahrt.Controls.Add(this.buttonVerbindungSuchenAbfahrtsplan);
             this.tabPageAbfahrt.Controls.Add(this.label4);
-            this.tabPageAbfahrt.Controls.Add(this.tableLayoutPanel1);
+            this.tabPageAbfahrt.Controls.Add(this.tableLayoutPanelAbfahrsplan);
             this.tabPageAbfahrt.Controls.Add(this.label5);
             this.tabPageAbfahrt.Controls.Add(this.textBox1);
             this.tabPageAbfahrt.Controls.Add(this.dateTimePicker1);
@@ -219,7 +220,7 @@
             this.buttonVerbindungSuchenAbfahrtsplan.TabIndex = 10;
             this.buttonVerbindungSuchenAbfahrtsplan.Text = "Verbindung Suchen";
             this.buttonVerbindungSuchenAbfahrtsplan.UseVisualStyleBackColor = true;
-            this.buttonVerbindungSuchenAbfahrtsplan.Click += new System.EventHandler(this.button1_Click);
+            this.buttonVerbindungSuchenAbfahrtsplan.Click += new System.EventHandler(this.buttonSearchAbfahrtsplan_Click);
             // 
             // label4
             // 
@@ -230,20 +231,20 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Verbindungen v";
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanelAbfahrsplan
             // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 170);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(602, 193);
-            this.tableLayoutPanel1.TabIndex = 20;
+            this.tableLayoutPanelAbfahrsplan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanelAbfahrsplan.ColumnCount = 3;
+            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168F));
+            this.tableLayoutPanelAbfahrsplan.Location = new System.Drawing.Point(13, 170);
+            this.tableLayoutPanelAbfahrsplan.Name = "tableLayoutPanelAbfahrsplan";
+            this.tableLayoutPanelAbfahrsplan.RowCount = 2;
+            this.tableLayoutPanelAbfahrsplan.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelAbfahrsplan.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelAbfahrsplan.Size = new System.Drawing.Size(602, 193);
+            this.tableLayoutPanelAbfahrsplan.TabIndex = 20;
             // 
             // label5
             // 
@@ -306,6 +307,7 @@
             this.MinimumSize = new System.Drawing.Size(640, 430);
             this.Name = "ÖVinder";
             this.Text = "ÖVinder";
+            this.Load += new System.EventHandler(this.ÖVinder_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageVerbindungen.ResumeLayout(false);
             this.tabPageVerbindungen.PerformLayout();
@@ -333,7 +335,7 @@
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonVerbindungSuchenAbfahrtsplan;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAbfahrsplan;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
