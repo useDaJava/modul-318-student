@@ -162,7 +162,6 @@
             this.tabPageAbfahrt.TabIndex = 1;
             this.tabPageAbfahrt.Text = "Abfahrtsplan";
             this.tabPageAbfahrt.UseVisualStyleBackColor = true;
-            this.tabPageAbfahrt.Click += new System.EventHandler(this.tabPageAbfahrt_Click);
             // 
             // buttonVerbindungSuchenAbfahrtsplan
             // 
@@ -177,10 +176,10 @@
             // tableLayoutPanelAbfahrsplan
             // 
             this.tableLayoutPanelAbfahrsplan.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanelAbfahrsplan.ColumnCount = 3;
-            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.tableLayoutPanelAbfahrsplan.ColumnCount = 2;
+            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelAbfahrsplan.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanelAbfahrsplan.Location = new System.Drawing.Point(3, 181);
             this.tableLayoutPanelAbfahrsplan.Name = "tableLayoutPanelAbfahrsplan";

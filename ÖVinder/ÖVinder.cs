@@ -33,31 +33,33 @@ namespace ÖVinder
         }
         private void labelVerbindungenTable_Click(object sender, EventArgs e) {
             if (tableLayoutPanelVerbindungen.Visible) {
-                labelVerbindungenTable.Text = "Verbindungen";
+                labelVerbindungenTable.Text = "Verbindungen v";
                 tableLayoutPanelVerbindungen.Visible = false;
             } else {
-                labelVerbindungenTable.Text = "Verbindungen";
+                labelVerbindungenTable.Text = "Verbindungen <";
                 tableLayoutPanelVerbindungen.Visible = true;
             }
         }
 
         private void buttonSearchAbfahrtsplan_Click(object sender, EventArgs e) {
             transport = new Transport();
-            var stationBoard = transport.GetStationBoard("Sursee", "8502007");
+            var stationBoard = transport.GetStationBoard(textBoxFromAbfahrtsplan.Text, transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList.Select(x => x.Id).ToString());
+
+            
+
+
+
+
             Console.WriteLine(stationBoard.Entries.Count());
             tableLayoutPanelAbfahrsplan.Controls.Clear();
+            insertHeaderAbfahrtsplan();
+            rowCountAbfahrtsplan++;
             foreach (StationBoard sb in stationBoard.Entries) {
                 columnCountAbfahrtsplan = 0;
-
-                var connections = transport.GetConnections(textBoxFrom.Text, textBoxTo.Text);
-                foreach (Connection targetConnection in connections.ConnectionList) {
-                    tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountVerbindungen, rowCountVerbindungen);
-                    tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  sb.Stop.Departure.Hour.ToString()}, columnCountVerbindungen++, rowCountVerbindungen);
-                }
-
+                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountVerbindungen, rowCountVerbindungen);
+                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  sb.Stop.Departure.Hour.ToString() + ":" + sb.Stop.Departure.Minute.ToString()}, columnCountVerbindungen++, rowCountVerbindungen);
                 rowCountAbfahrtsplan++;
             }
-
         }
 
         private void buttonSearch_Click(object sender, EventArgs e) {
@@ -78,6 +80,7 @@ namespace ÖVinder
                 departureTime = Convert.ToDateTime(targetConnection.From.Departure.ToString());
                 arrivalTime = Convert.ToDateTime(targetConnection.To.Arrival.ToString());
                 string duration = targetConnection.Duration.ToString().Substring(targetConnection.Duration.ToString().Length - 7);
+
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.Hour.ToString() + ":" + addLeadingZero(departureTime.Minute) },
                 columnCountVerbindungen, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = arrivalTime.Hour.ToString() + ":" + addLeadingZero(arrivalTime.Minute) },
@@ -92,17 +95,18 @@ namespace ÖVinder
         private void insertHeaderVerbindungen() {
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
             columnCountVerbindungen = 0;
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter}, columnCountVerbindungen, rowCountVerbindungen);
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Ankunft:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, columnCountVerbindungen++, rowCountVerbindungen);
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Dauer:" , Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, columnCountVerbindungen++, rowCountVerbindungen);
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Gleis:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, columnCountVerbindungen++, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter}, 0, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Ankunft:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, 1, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Dauer:" , Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, 2, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Gleis:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, 3, rowCountVerbindungen);
         }
         private void insertHeaderAbfahrtsplan() {
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
             columnCountAbfahrtsplan = 0;
-            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Ziel:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, columnCountAbfahrtsplan, rowCountAbfahrtsplan);
-            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
-            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Gleis:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
+            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Ziel:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
+                columnCountAbfahrtsplan, rowCountAbfahrtsplan);
+            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
+                columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
         }
 
         private string addLeadingZero(int numberToAddZero) {
@@ -127,11 +131,10 @@ namespace ÖVinder
             if (textBoxForAutocomplete.Text != null) {
                 if (textBoxForAutocomplete.Text.Length >= 3) {
                     transport = new Transport();
-                    List<string> stations = new List<string>();
                     AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-                    var stationsx = transport.GetStations(textBoxForAutocomplete.Text);
-                    if (stationsx != null) {
-                        collection.AddRange(stationsx.StationList.Select(x => x.Name).ToArray());
+                    var stations = transport.GetStations(textBoxForAutocomplete.Text);
+                    if (stations != null) {
+                        collection.AddRange(stations.StationList.Select(x => x.Name).ToArray());
                     }
 
                     textBoxForAutocomplete.AutoCompleteCustomSource = collection;
@@ -147,16 +150,13 @@ namespace ÖVinder
             showAutocompleteOptions(textBoxFromAbfahrtsplan);
         }
 
-        private void tabPageAbfahrt_Click(object sender, EventArgs e) {
-            
-        }
 
         private void labelAbfahrten_Click(object sender, EventArgs e) {
             if (tableLayoutPanelAbfahrsplan.Visible) {
-                labelVerbindungenTable.Text = "Abfahrten";
+                labelVerbindungenTable.Text = "Abfahrten v";
                 tableLayoutPanelAbfahrsplan.Visible = false;
             } else {
-                labelVerbindungenTable.Text = "Abfahrten";
+                labelVerbindungenTable.Text = "Abfahrten <";
                 tableLayoutPanelAbfahrsplan.Visible = true;
             }
     }
