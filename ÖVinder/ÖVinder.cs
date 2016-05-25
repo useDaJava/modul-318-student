@@ -21,6 +21,16 @@ namespace ÖVinder
             InitializeComponent();
         }
 
+        private void ÖVinder_Load(object sender, EventArgs e) {
+            insertHeaderAbfahrtsplan();
+            insertHeaderVerbindungen();
+            textBoxFrom.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBoxFrom.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBoxTo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBoxTo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBoxFromAbfahrtsplan.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBoxFromAbfahrtsplan.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
         private void labelVerbindungenTable_Click(object sender, EventArgs e) {
             if (tableLayoutPanelVerbindungen.Visible) {
                 labelVerbindungenTable.Text = "Verbindungen <";
@@ -44,7 +54,7 @@ namespace ÖVinder
                 foreach (Connection targetConnection in connections.ConnectionList) {
                     departureTime = Convert.ToDateTime(targetConnection.From.Departure.ToString());
                     tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountVerbindungen, rowCountVerbindungen);
-                    tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  }, columnCountVerbindungen++, rowCountVerbindungen);
+                    //tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  }, columnCountVerbindungen++, rowCountVerbindungen);
 
 
                 }
@@ -99,10 +109,6 @@ namespace ÖVinder
             tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Gleis:", Font = titleFont }, columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
         }
 
-        private void ÖVinder_Load(object sender, EventArgs e) {
-            insertHeaderAbfahrtsplan();
-            insertHeaderVerbindungen();
-        }
         private string addLeadingZero(int numberToAddZero) {
             if (numberToAddZero < 10) {
                 return "0" + numberToAddZero;
@@ -115,6 +121,34 @@ namespace ÖVinder
             if(e.KeyChar == (char)13) {
                 searchVerbindungenEvent();
             }
+        }
+
+        private void textBoxFrom_TextChanged(object sender, EventArgs e) {
+            showAutocompleteOptions(textBoxFrom);
+        }
+
+        private void showAutocompleteOptions(TextBox textBoxForAutocomplete) {
+            if (textBoxForAutocomplete.Text != null) {
+                if (textBoxForAutocomplete.Text.Length >= 3) {
+                    transport = new Transport();
+                    List<string> stations = new List<string>();
+                    AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+                    var stationsx = transport.GetStations(textBoxForAutocomplete.Text);
+                    if (stationsx != null) {
+                        collection.AddRange(stationsx.StationList.Select(x => x.Name).ToArray());
+                    }
+
+                    textBoxForAutocomplete.AutoCompleteCustomSource = collection;
+                }
+            }
+        }
+
+        private void textBoxTo_TextChanged(object sender, EventArgs e) {
+            showAutocompleteOptions(textBoxTo);
+        }
+
+        private void textBoxVonAbfahrtsplan_TextChanged(object sender, EventArgs e) {
+            showAutocompleteOptions(textBoxFromAbfahrtsplan);
         }
     }
 }

@@ -50,7 +50,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBoxVonAbfahrtsplan = new System.Windows.Forms.TextBox();
+            this.textBoxFromAbfahrtsplan = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -176,6 +176,7 @@
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(170, 20);
             this.textBoxTo.TabIndex = 2;
+            this.textBoxTo.TextChanged += new System.EventHandler(this.textBoxTo_TextChanged);
             this.textBoxTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTo_KeyPress);
             // 
             // labelVon
@@ -193,6 +194,7 @@
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.Size = new System.Drawing.Size(170, 20);
             this.textBoxFrom.TabIndex = 0;
+            this.textBoxFrom.TextChanged += new System.EventHandler(this.textBoxFrom_TextChanged);
             // 
             // tabPageAbfahrt
             // 
@@ -204,7 +206,7 @@
             this.tabPageAbfahrt.Controls.Add(this.dateTimePicker1);
             this.tabPageAbfahrt.Controls.Add(this.label6);
             this.tabPageAbfahrt.Controls.Add(this.label8);
-            this.tabPageAbfahrt.Controls.Add(this.textBoxVonAbfahrtsplan);
+            this.tabPageAbfahrt.Controls.Add(this.textBoxFromAbfahrtsplan);
             this.tabPageAbfahrt.Location = new System.Drawing.Point(4, 22);
             this.tabPageAbfahrt.Name = "tabPageAbfahrt";
             this.tabPageAbfahrt.Padding = new System.Windows.Forms.Padding(3);
@@ -292,12 +294,13 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "Von:";
             // 
-            // textBoxVonAbfahrtsplan
+            // textBoxFromAbfahrtsplan
             // 
-            this.textBoxVonAbfahrtsplan.Location = new System.Drawing.Point(60, 14);
-            this.textBoxVonAbfahrtsplan.Name = "textBoxVonAbfahrtsplan";
-            this.textBoxVonAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
-            this.textBoxVonAbfahrtsplan.TabIndex = 11;
+            this.textBoxFromAbfahrtsplan.Location = new System.Drawing.Point(60, 14);
+            this.textBoxFromAbfahrtsplan.Name = "textBoxFromAbfahrtsplan";
+            this.textBoxFromAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
+            this.textBoxFromAbfahrtsplan.TabIndex = 11;
+            this.textBoxFromAbfahrtsplan.TextChanged += new System.EventHandler(this.textBoxVonAbfahrtsplan_TextChanged);
             // 
             // ÖVinder
             // 
@@ -342,7 +345,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBoxVonAbfahrtsplan;
+        private System.Windows.Forms.TextBox textBoxFromAbfahrtsplan;
     }
 }
 
