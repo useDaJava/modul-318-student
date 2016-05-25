@@ -176,6 +176,7 @@
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(170, 20);
             this.textBoxTo.TabIndex = 2;
+            this.textBoxTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTo_KeyPress);
             // 
             // labelVon
             // 

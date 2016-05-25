@@ -40,20 +40,25 @@ namespace ÖVinder
                 columnCountAbfahrtsplan = 0;
 
                 var connections = transport.GetConnections(textBoxFrom.Text, textBoxTo.Text);
-
+                DateTime departureTime;
                 foreach (Connection targetConnection in connections.ConnectionList) {
-                    string duration = targetConnection.Duration.ToString().Substring(targetConnection.Duration.ToString().Length - 7);
+                    departureTime = Convert.ToDateTime(targetConnection.From.Departure.ToString());
+                    tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountVerbindungen, rowCountVerbindungen);
+                    tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  }, columnCountVerbindungen++, rowCountVerbindungen);
+
 
                 }
 
-                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString()}, columnCountVerbindungen, rowCountVerbindungen);
-                //tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = transport. }, columnCountVerbindungen++, rowCountVerbindungen);
                 rowCountAbfahrtsplan++;
             }
 
         }
 
         private void buttonSearch_Click(object sender, EventArgs e) {
+            searchVerbindungenEvent();
+        }
+
+        private void searchVerbindungenEvent() {
             transport = new Transport();
             var connections = transport.GetConnections(textBoxFrom.Text, textBoxTo.Text);
             tableLayoutPanelVerbindungen.Controls.Clear();
@@ -67,16 +72,17 @@ namespace ÖVinder
                 departureTime = Convert.ToDateTime(targetConnection.From.Departure.ToString());
                 arrivalTime = Convert.ToDateTime(targetConnection.To.Arrival.ToString());
                 string duration = targetConnection.Duration.ToString().Substring(targetConnection.Duration.ToString().Length - 7);
-                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.Hour.ToString() + ":" + addLeadingZero(departureTime.Minute)},
+                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.Hour.ToString() + ":" + addLeadingZero(departureTime.Minute) },
                 columnCountVerbindungen, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = arrivalTime.Hour.ToString() + ":" + addLeadingZero(arrivalTime.Minute) },
                 columnCountVerbindungen++, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = duration }, columnCountVerbindungen++, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = targetConnection.From.Platform }, columnCountVerbindungen++, rowCountVerbindungen);
                 rowCountVerbindungen++;
-                
+
             }
         }
+
         private void insertHeaderVerbindungen() {
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold | FontStyle.Underline);
             columnCountVerbindungen = 0;
@@ -102,6 +108,12 @@ namespace ÖVinder
                 return "0" + numberToAddZero;
             } else {
                 return numberToAddZero.ToString();
+            }
+        }
+
+        private void textBoxTo_KeyPress(object sender, KeyPressEventArgs e) {
+            if(e.KeyChar == (char)13) {
+                searchVerbindungenEvent();
             }
         }
     }
