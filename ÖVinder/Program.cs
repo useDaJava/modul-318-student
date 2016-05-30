@@ -17,6 +17,7 @@ namespace ÖVinder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ÖVinder());
+                //ignore exception, failure happens @ accessing transport API. Failure because of Infrastructure or API
         }
     }
 }

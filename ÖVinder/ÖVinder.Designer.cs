@@ -39,10 +39,10 @@
             this.textBoxFrom = new System.Windows.Forms.TextBox();
             this.tabPageAbfahrt = new System.Windows.Forms.TabPage();
             this.buttonVerbindungSuchenAbfahrtsplan = new System.Windows.Forms.Button();
+            this.labelAbfahrten = new System.Windows.Forms.Label();
             this.tableLayoutPanelAbfahrsplan = new System.Windows.Forms.TableLayoutPanel();
             this.labelAbfahrtsplanVon = new System.Windows.Forms.Label();
             this.textBoxFromAbfahrtsplan = new System.Windows.Forms.TextBox();
-            this.labelAbfahrten = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -56,7 +56,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(416, 403);
+            this.tabControl1.Size = new System.Drawing.Size(446, 403);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageVerbindungen
@@ -71,7 +71,7 @@
             this.tabPageVerbindungen.Location = new System.Drawing.Point(4, 22);
             this.tabPageVerbindungen.Name = "tabPageVerbindungen";
             this.tabPageVerbindungen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageVerbindungen.Size = new System.Drawing.Size(408, 377);
+            this.tabPageVerbindungen.Size = new System.Drawing.Size(438, 377);
             this.tabPageVerbindungen.TabIndex = 0;
             this.tabPageVerbindungen.Text = "Verbindungen";
             this.tabPageVerbindungen.UseVisualStyleBackColor = true;
@@ -94,7 +94,6 @@
             this.labelVerbindungenTable.Size = new System.Drawing.Size(73, 13);
             this.labelVerbindungenTable.TabIndex = 1;
             this.labelVerbindungenTable.Text = "Verbindungen";
-            this.labelVerbindungenTable.Click += new System.EventHandler(this.labelVerbindungenTable_Click);
             // 
             // tableLayoutPanelVerbindungen
             // 
@@ -110,7 +109,7 @@
             this.tableLayoutPanelVerbindungen.RowCount = 2;
             this.tableLayoutPanelVerbindungen.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelVerbindungen.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelVerbindungen.Size = new System.Drawing.Size(402, 193);
+            this.tableLayoutPanelVerbindungen.Size = new System.Drawing.Size(432, 193);
             this.tableLayoutPanelVerbindungen.TabIndex = 9;
             // 
             // label2
@@ -173,13 +172,21 @@
             this.buttonVerbindungSuchenAbfahrtsplan.UseVisualStyleBackColor = true;
             this.buttonVerbindungSuchenAbfahrtsplan.Click += new System.EventHandler(this.buttonSearchAbfahrtsplan_Click);
             // 
+            // labelAbfahrten
+            // 
+            this.labelAbfahrten.AutoSize = true;
+            this.labelAbfahrten.Location = new System.Drawing.Point(1, 151);
+            this.labelAbfahrten.Name = "labelAbfahrten";
+            this.labelAbfahrten.Size = new System.Drawing.Size(53, 13);
+            this.labelAbfahrten.TabIndex = 12;
+            this.labelAbfahrten.Text = "Abfahrten";
+            // 
             // tableLayoutPanelAbfahrsplan
             // 
             this.tableLayoutPanelAbfahrsplan.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanelAbfahrsplan.ColumnCount = 2;
             this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelAbfahrsplan.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelAbfahrsplan.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanelAbfahrsplan.Location = new System.Drawing.Point(3, 181);
             this.tableLayoutPanelAbfahrsplan.Name = "tableLayoutPanelAbfahrsplan";
@@ -206,25 +213,15 @@
             this.textBoxFromAbfahrtsplan.TabIndex = 11;
             this.textBoxFromAbfahrtsplan.TextChanged += new System.EventHandler(this.textBoxVonAbfahrtsplan_TextChanged);
             // 
-            // labelAbfahrten
-            // 
-            this.labelAbfahrten.AutoSize = true;
-            this.labelAbfahrten.Location = new System.Drawing.Point(1, 151);
-            this.labelAbfahrten.Name = "labelAbfahrten";
-            this.labelAbfahrten.Size = new System.Drawing.Size(53, 13);
-            this.labelAbfahrten.TabIndex = 12;
-            this.labelAbfahrten.Text = "Abfahrten";
-            this.labelAbfahrten.Click += new System.EventHandler(this.labelAbfahrten_Click);
-            // 
             // ÖVinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 403);
+            this.ClientSize = new System.Drawing.Size(446, 403);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(424, 430);
-            this.MinimumSize = new System.Drawing.Size(340, 430);
+            this.MaximumSize = new System.Drawing.Size(454, 430);
+            this.MinimumSize = new System.Drawing.Size(454, 430);
             this.Name = "ÖVinder";
             this.Text = "ÖVinder";
             this.Load += new System.EventHandler(this.ÖVinder_Load);
