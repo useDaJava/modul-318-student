@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageVerbindungen = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePickerTimeVerbindungen = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePickerDateVerbindungen = new System.Windows.Forms.DateTimePicker();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.labelVerbindungenTable = new System.Windows.Forms.Label();
             this.tableLayoutPanelVerbindungen = new System.Windows.Forms.TableLayoutPanel();
@@ -44,10 +48,10 @@
             this.tableLayoutPanelAbfahrsplan = new System.Windows.Forms.TableLayoutPanel();
             this.labelAbfahrtsplanVon = new System.Windows.Forms.Label();
             this.textBoxFromAbfahrtsplan = new System.Windows.Forms.TextBox();
-            this.dateTimePickerDateVerbindungen = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePickerTimeVerbindungen = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePickerDateAbfahrtsplan = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerZeitAbfahrtsplan = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -84,6 +88,40 @@
             this.tabPageVerbindungen.TabIndex = 0;
             this.tabPageVerbindungen.Text = "Verbindungen";
             this.tabPageVerbindungen.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Zeit:";
+            // 
+            // dateTimePickerTimeVerbindungen
+            // 
+            this.dateTimePickerTimeVerbindungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerTimeVerbindungen.Location = new System.Drawing.Point(62, 84);
+            this.dateTimePickerTimeVerbindungen.Name = "dateTimePickerTimeVerbindungen";
+            this.dateTimePickerTimeVerbindungen.ShowUpDown = true;
+            this.dateTimePickerTimeVerbindungen.Size = new System.Drawing.Size(171, 20);
+            this.dateTimePickerTimeVerbindungen.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Datum";
+            // 
+            // dateTimePickerDateVerbindungen
+            // 
+            this.dateTimePickerDateVerbindungen.Location = new System.Drawing.Point(62, 58);
+            this.dateTimePickerDateVerbindungen.Name = "dateTimePickerDateVerbindungen";
+            this.dateTimePickerDateVerbindungen.Size = new System.Drawing.Size(170, 20);
+            this.dateTimePickerDateVerbindungen.TabIndex = 1;
             // 
             // buttonSearch
             // 
@@ -157,6 +195,10 @@
             // 
             // tabPageAbfahrt
             // 
+            this.tabPageAbfahrt.Controls.Add(this.label5);
+            this.tabPageAbfahrt.Controls.Add(this.label4);
+            this.tabPageAbfahrt.Controls.Add(this.dateTimePickerZeitAbfahrtsplan);
+            this.tabPageAbfahrt.Controls.Add(this.dateTimePickerDateAbfahrtsplan);
             this.tabPageAbfahrt.Controls.Add(this.webBrowser);
             this.tabPageAbfahrt.Controls.Add(this.buttonVerbindungSuchenAbfahrtsplan);
             this.tabPageAbfahrt.Controls.Add(this.labelAbfahrten);
@@ -182,7 +224,7 @@
             // 
             // buttonVerbindungSuchenAbfahrtsplan
             // 
-            this.buttonVerbindungSuchenAbfahrtsplan.Location = new System.Drawing.Point(11, 41);
+            this.buttonVerbindungSuchenAbfahrtsplan.Location = new System.Drawing.Point(11, 91);
             this.buttonVerbindungSuchenAbfahrtsplan.Name = "buttonVerbindungSuchenAbfahrtsplan";
             this.buttonVerbindungSuchenAbfahrtsplan.Size = new System.Drawing.Size(221, 23);
             this.buttonVerbindungSuchenAbfahrtsplan.TabIndex = 10;
@@ -231,39 +273,39 @@
             this.textBoxFromAbfahrtsplan.TabIndex = 11;
             this.textBoxFromAbfahrtsplan.TextChanged += new System.EventHandler(this.textBoxVonAbfahrtsplan_TextChanged);
             // 
-            // dateTimePickerDateVerbindungen
+            // dateTimePickerDateAbfahrtsplan
             // 
-            this.dateTimePickerDateVerbindungen.Location = new System.Drawing.Point(62, 58);
-            this.dateTimePickerDateVerbindungen.Name = "dateTimePickerDateVerbindungen";
-            this.dateTimePickerDateVerbindungen.Size = new System.Drawing.Size(170, 20);
-            this.dateTimePickerDateVerbindungen.TabIndex = 1;
+            this.dateTimePickerDateAbfahrtsplan.Location = new System.Drawing.Point(62, 32);
+            this.dateTimePickerDateAbfahrtsplan.Name = "dateTimePickerDateAbfahrtsplan";
+            this.dateTimePickerDateAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
+            this.dateTimePickerDateAbfahrtsplan.TabIndex = 22;
             // 
-            // label1
+            // dateTimePickerZeitAbfahrtsplan
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Datum";
+            this.dateTimePickerZeitAbfahrtsplan.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerZeitAbfahrtsplan.Location = new System.Drawing.Point(62, 58);
+            this.dateTimePickerZeitAbfahrtsplan.Name = "dateTimePickerZeitAbfahrtsplan";
+            this.dateTimePickerZeitAbfahrtsplan.ShowUpDown = true;
+            this.dateTimePickerZeitAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
+            this.dateTimePickerZeitAbfahrtsplan.TabIndex = 23;
             // 
-            // dateTimePickerTimeVerbindungen
+            // label4
             // 
-            this.dateTimePickerTimeVerbindungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerTimeVerbindungen.Location = new System.Drawing.Point(62, 84);
-            this.dateTimePickerTimeVerbindungen.Name = "dateTimePickerTimeVerbindungen";
-            this.dateTimePickerTimeVerbindungen.ShowUpDown = true;
-            this.dateTimePickerTimeVerbindungen.Size = new System.Drawing.Size(171, 20);
-            this.dateTimePickerTimeVerbindungen.TabIndex = 11;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 39);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Datum:";
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Zeit:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Zeit:";
             // 
             // ÖVinder
             // 
@@ -308,6 +350,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerTimeVerbindungen;
+        private System.Windows.Forms.DateTimePicker dateTimePickerZeitAbfahrtsplan;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDateAbfahrtsplan;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
 
