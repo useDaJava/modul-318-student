@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SwissTransport;
+using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace ÖVinder
 {
@@ -22,12 +24,14 @@ namespace ÖVinder
         }
 
         private void ÖVinder_Load(object sender, EventArgs e) {
-            //hide not used components
-            webBrowser.Hide();
+            //set Webbrowser Emulation because of outdated version
+            WebBrowserVersionEmulation();
             //insert heading rows into tables
             insertHeaderAbfahrtsplan();
             insertHeaderVerbindungen();
             //set autocomplete mode and source
+            textBoxMapStation.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBoxMapStation.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxFrom.AutoCompleteMode = AutoCompleteMode.Suggest;
             textBoxFrom.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTo.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -66,10 +70,8 @@ namespace ÖVinder
             //call showMap method
             showMap(station);
         }
+
         public void showMap(Station station) {
-            webBrowser.Show();
-            Console.WriteLine("https://www.google.ch/maps/@" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate + ",20z");
-            webBrowser.Navigate("https://www.google.ch/maps/@" + station.Coordinate + ",15z");
 
         }
 
@@ -159,5 +161,34 @@ namespace ÖVinder
             showAutocompleteOptions(textBoxFromAbfahrtsplan);
         }
 
+        private void buttonShowOnMap_Click(object sender, EventArgs e) {
+            Station station = transport.GetStations(textBoxMapStation.Text).StationList[0];
+            Console.WriteLine("https://www.google.ch/maps/@" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate + ",20z");
+            webBrowser.Navigate("https://www.google.ch/maps/@" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate + ",19z");
+        }
+
+        private void textBoxMapStation_TextChanged(object sender, EventArgs e) {
+            showAutocompleteOptions(textBoxMapStation);
+        }
+
+        private static void WebBrowserVersionEmulation() {
+            //little hack on the back
+            const string BROWSER_EMULATION_KEY =
+            @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
+            //
+            // app.exe and app.vshost.exe
+            String appname = Process.GetCurrentProcess().ProcessName + ".exe";
+            
+            const int browserEmulationMode = 9999;
+
+            RegistryKey browserEmulationKey =
+                Registry.CurrentUser.OpenSubKey(BROWSER_EMULATION_KEY, RegistryKeyPermissionCheck.ReadWriteSubTree) ??
+                Registry.CurrentUser.CreateSubKey(BROWSER_EMULATION_KEY);
+
+            if (browserEmulationKey != null) {
+                browserEmulationKey.SetValue(appname, browserEmulationMode, RegistryValueKind.DWord);
+                browserEmulationKey.Close();
+            }
+        }
     }
 }

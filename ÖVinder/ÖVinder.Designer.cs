@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageVerbindungen = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerTimeVerbindungen = new System.Windows.Forms.DateTimePicker();
@@ -42,31 +42,33 @@
             this.labelVon = new System.Windows.Forms.Label();
             this.textBoxFrom = new System.Windows.Forms.TextBox();
             this.tabPageAbfahrt = new System.Windows.Forms.TabPage();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.buttonVerbindungSuchenAbfahrtsplan = new System.Windows.Forms.Button();
             this.labelAbfahrten = new System.Windows.Forms.Label();
             this.tableLayoutPanelAbfahrsplan = new System.Windows.Forms.TableLayoutPanel();
             this.labelAbfahrtsplanVon = new System.Windows.Forms.Label();
             this.textBoxFromAbfahrtsplan = new System.Windows.Forms.TextBox();
-            this.dateTimePickerDateAbfahrtsplan = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerZeitAbfahrtsplan = new System.Windows.Forms.DateTimePicker();
+            this.tabPageMap = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.textBoxMapStation = new System.Windows.Forms.TextBox();
+            this.buttonShowOnMap = new System.Windows.Forms.Button();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.tabControl.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
+            this.tabPageMap.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPageVerbindungen);
-            this.tabControl1.Controls.Add(this.tabPageAbfahrt);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(446, 403);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl.Controls.Add(this.tabPageVerbindungen);
+            this.tabControl.Controls.Add(this.tabPageAbfahrt);
+            this.tabControl.Controls.Add(this.tabPageMap);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(446, 403);
+            this.tabControl.TabIndex = 0;
             // 
             // tabPageVerbindungen
             // 
@@ -195,11 +197,6 @@
             // 
             // tabPageAbfahrt
             // 
-            this.tabPageAbfahrt.Controls.Add(this.label5);
-            this.tabPageAbfahrt.Controls.Add(this.label4);
-            this.tabPageAbfahrt.Controls.Add(this.dateTimePickerZeitAbfahrtsplan);
-            this.tabPageAbfahrt.Controls.Add(this.dateTimePickerDateAbfahrtsplan);
-            this.tabPageAbfahrt.Controls.Add(this.webBrowser);
             this.tabPageAbfahrt.Controls.Add(this.buttonVerbindungSuchenAbfahrtsplan);
             this.tabPageAbfahrt.Controls.Add(this.labelAbfahrten);
             this.tabPageAbfahrt.Controls.Add(this.tableLayoutPanelAbfahrsplan);
@@ -213,18 +210,9 @@
             this.tabPageAbfahrt.Text = "Abfahrtsplan";
             this.tabPageAbfahrt.UseVisualStyleBackColor = true;
             // 
-            // webBrowser
-            // 
-            this.webBrowser.Location = new System.Drawing.Point(247, 0);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(188, 164);
-            this.webBrowser.TabIndex = 21;
-            this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
-            // 
             // buttonVerbindungSuchenAbfahrtsplan
             // 
-            this.buttonVerbindungSuchenAbfahrtsplan.Location = new System.Drawing.Point(11, 91);
+            this.buttonVerbindungSuchenAbfahrtsplan.Location = new System.Drawing.Point(11, 32);
             this.buttonVerbindungSuchenAbfahrtsplan.Name = "buttonVerbindungSuchenAbfahrtsplan";
             this.buttonVerbindungSuchenAbfahrtsplan.Size = new System.Drawing.Size(221, 23);
             this.buttonVerbindungSuchenAbfahrtsplan.TabIndex = 10;
@@ -273,64 +261,83 @@
             this.textBoxFromAbfahrtsplan.TabIndex = 11;
             this.textBoxFromAbfahrtsplan.TextChanged += new System.EventHandler(this.textBoxVonAbfahrtsplan_TextChanged);
             // 
-            // dateTimePickerDateAbfahrtsplan
+            // tabPageMap
             // 
-            this.dateTimePickerDateAbfahrtsplan.Location = new System.Drawing.Point(62, 32);
-            this.dateTimePickerDateAbfahrtsplan.Name = "dateTimePickerDateAbfahrtsplan";
-            this.dateTimePickerDateAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
-            this.dateTimePickerDateAbfahrtsplan.TabIndex = 22;
-            // 
-            // dateTimePickerZeitAbfahrtsplan
-            // 
-            this.dateTimePickerZeitAbfahrtsplan.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerZeitAbfahrtsplan.Location = new System.Drawing.Point(62, 58);
-            this.dateTimePickerZeitAbfahrtsplan.Name = "dateTimePickerZeitAbfahrtsplan";
-            this.dateTimePickerZeitAbfahrtsplan.ShowUpDown = true;
-            this.dateTimePickerZeitAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
-            this.dateTimePickerZeitAbfahrtsplan.TabIndex = 23;
+            this.tabPageMap.Controls.Add(this.webBrowser);
+            this.tabPageMap.Controls.Add(this.buttonShowOnMap);
+            this.tabPageMap.Controls.Add(this.textBoxMapStation);
+            this.tabPageMap.Controls.Add(this.label4);
+            this.tabPageMap.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMap.Name = "tabPageMap";
+            this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMap.Size = new System.Drawing.Size(438, 377);
+            this.tabPageMap.TabIndex = 2;
+            this.tabPageMap.Text = "Karte";
+            this.tabPageMap.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 39);
+            this.label4.Location = new System.Drawing.Point(8, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Datum:";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Station:";
             // 
-            // label5
+            // textBoxMapStation
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 66);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Zeit:";
+            this.textBoxMapStation.Location = new System.Drawing.Point(62, 6);
+            this.textBoxMapStation.Name = "textBoxMapStation";
+            this.textBoxMapStation.Size = new System.Drawing.Size(170, 20);
+            this.textBoxMapStation.TabIndex = 1;
+            this.textBoxMapStation.TextChanged += new System.EventHandler(this.textBoxMapStation_TextChanged);
+            // 
+            // buttonShowOnMap
+            // 
+            this.buttonShowOnMap.Location = new System.Drawing.Point(11, 32);
+            this.buttonShowOnMap.Name = "buttonShowOnMap";
+            this.buttonShowOnMap.Size = new System.Drawing.Size(221, 23);
+            this.buttonShowOnMap.TabIndex = 2;
+            this.buttonShowOnMap.Text = "Station auf Karte anzeigen";
+            this.buttonShowOnMap.UseVisualStyleBackColor = true;
+            this.buttonShowOnMap.Click += new System.EventHandler(this.buttonShowOnMap_Click);
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.webBrowser.Location = new System.Drawing.Point(3, 61);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(432, 313);
+            this.webBrowser.TabIndex = 22;
+            this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // ÖVinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 403);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(454, 430);
             this.MinimumSize = new System.Drawing.Size(454, 430);
             this.Name = "ÖVinder";
             this.Text = "ÖVinder";
             this.Load += new System.EventHandler(this.ÖVinder_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPageVerbindungen.ResumeLayout(false);
             this.tabPageVerbindungen.PerformLayout();
             this.tabPageAbfahrt.ResumeLayout(false);
             this.tabPageAbfahrt.PerformLayout();
+            this.tabPageMap.ResumeLayout(false);
+            this.tabPageMap.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageVerbindungen;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxTo;
@@ -345,14 +352,14 @@
         private System.Windows.Forms.Label labelAbfahrtsplanVon;
         private System.Windows.Forms.TextBox textBoxFromAbfahrtsplan;
         private System.Windows.Forms.Label labelAbfahrten;
-        private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateVerbindungen;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerTimeVerbindungen;
-        private System.Windows.Forms.DateTimePicker dateTimePickerZeitAbfahrtsplan;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDateAbfahrtsplan;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage tabPageMap;
+        private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.Button buttonShowOnMap;
+        private System.Windows.Forms.TextBox textBoxMapStation;
         private System.Windows.Forms.Label label4;
     }
 }
