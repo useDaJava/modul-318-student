@@ -22,6 +22,8 @@ namespace ÖVinder
         }
 
         private void ÖVinder_Load(object sender, EventArgs e) {
+            //hide not used components
+            webBrowser.Hide();
             //insert heading rows into tables
             insertHeaderAbfahrtsplan();
             insertHeaderVerbindungen();
@@ -32,22 +34,28 @@ namespace ÖVinder
             textBoxTo.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxFromAbfahrtsplan.AutoCompleteMode = AutoCompleteMode.Suggest;
             textBoxFromAbfahrtsplan.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //set autoscroll to true
             tableLayoutPanelAbfahrsplan.AutoScroll = true;
             tableLayoutPanelVerbindungen.AutoScroll = true;
         }
 
 
         private void buttonSearchAbfahrtsplan_Click(object sender, EventArgs e) {
-            tableLayoutPanelAbfahrsplan.Controls.Clear();
+            //call method for action
+            searchAbfahrten();
+        }
+
+        private void searchAbfahrten() {
             transport = new Transport();
-            //Station station = transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList.FirstOrDefault(x => x.Name == textBoxFromAbfahrtsplan.Text);
             Station station = transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList[0];
             transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList.FirstOrDefault(x => x.Name == textBoxFromAbfahrtsplan.Text);
             var stationBoard = transport.GetStationBoard(station.Name, station.Id);
 
+            //clear table, delete all content from tableLayoutPanelAbfahrsplan
             tableLayoutPanelAbfahrsplan.Controls.Clear();
             insertHeaderAbfahrtsplan();
             rowCountAbfahrtsplan+= 1;
+
             foreach (StationBoard sb in stationBoard.Entries) {
                 columnCountAbfahrtsplan = 0;
                 tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountAbfahrtsplan, rowCountAbfahrtsplan);
@@ -55,6 +63,14 @@ namespace ÖVinder
                     columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
                 rowCountAbfahrtsplan += 1;
             }
+            //call showMap method
+            showMap(station);
+        }
+        public void showMap(Station station) {
+            webBrowser.Show();
+            Console.WriteLine("https://www.google.ch/maps/@" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate + ",20z");
+            webBrowser.Navigate("https://www.google.ch/maps/@" + station.Coordinate + ",15z");
+
         }
 
         private void buttonSearch_Click(object sender, EventArgs e) {
@@ -63,9 +79,12 @@ namespace ÖVinder
 
         private void searchVerbindungenEvent() {
             transport = new Transport();
-            var connections = transport.GetConnections(textBoxFrom.Text, textBoxTo.Text);
+            //save connections
+            var connections = transport.GetConnections(textBoxFrom.Text, textBoxTo.Text, dateTimePickerDateVerbindungen.Value, dateTimePickerTimeVerbindungen.Value);
+            //clear tableLayoutPanelVerbindungen
             tableLayoutPanelVerbindungen.Controls.Clear();
             insertHeaderVerbindungen();
+            //increment rowCounter after inserting header
             rowCountVerbindungen++;
             DateTime departureTime;
             DateTime arrivalTime;
@@ -75,6 +94,7 @@ namespace ÖVinder
                 arrivalTime = Convert.ToDateTime(targetConnection.To.Arrival.ToString());
                 string duration = targetConnection.Duration.ToString().Substring(targetConnection.Duration.ToString().Length - 7);
 
+                //add all cols with Text to tableLayout
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.Hour.ToString() + ":" + addLeadingZero(departureTime.Minute) },
                 columnCountVerbindungen, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = arrivalTime.Hour.ToString() + ":" + addLeadingZero(arrivalTime.Minute) },
@@ -87,6 +107,7 @@ namespace ÖVinder
         }
 
         private void insertHeaderVerbindungen() {
+            //set title Font
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
             columnCountVerbindungen = 0;
             tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter}, 0, rowCountVerbindungen);
@@ -108,12 +129,6 @@ namespace ÖVinder
                 return "0" + numberToAddZero;
             } else {
                 return numberToAddZero.ToString();
-            }
-        }
-
-        private void textBoxTo_KeyPress(object sender, KeyPressEventArgs e) {
-            if(e.KeyChar == (char)13) {
-                searchVerbindungenEvent();
             }
         }
 
@@ -143,5 +158,6 @@ namespace ÖVinder
         private void textBoxVonAbfahrtsplan_TextChanged(object sender, EventArgs e) {
             showAutocompleteOptions(textBoxFromAbfahrtsplan);
         }
+
     }
 }

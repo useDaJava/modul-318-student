@@ -38,11 +38,16 @@
             this.labelVon = new System.Windows.Forms.Label();
             this.textBoxFrom = new System.Windows.Forms.TextBox();
             this.tabPageAbfahrt = new System.Windows.Forms.TabPage();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.buttonVerbindungSuchenAbfahrtsplan = new System.Windows.Forms.Button();
             this.labelAbfahrten = new System.Windows.Forms.Label();
             this.tableLayoutPanelAbfahrsplan = new System.Windows.Forms.TableLayoutPanel();
             this.labelAbfahrtsplanVon = new System.Windows.Forms.Label();
             this.textBoxFromAbfahrtsplan = new System.Windows.Forms.TextBox();
+            this.dateTimePickerDateVerbindungen = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePickerTimeVerbindungen = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -61,6 +66,10 @@
             // 
             // tabPageVerbindungen
             // 
+            this.tabPageVerbindungen.Controls.Add(this.label3);
+            this.tabPageVerbindungen.Controls.Add(this.dateTimePickerTimeVerbindungen);
+            this.tabPageVerbindungen.Controls.Add(this.label1);
+            this.tabPageVerbindungen.Controls.Add(this.dateTimePickerDateVerbindungen);
             this.tabPageVerbindungen.Controls.Add(this.buttonSearch);
             this.tabPageVerbindungen.Controls.Add(this.labelVerbindungenTable);
             this.tabPageVerbindungen.Controls.Add(this.tableLayoutPanelVerbindungen);
@@ -78,7 +87,7 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(11, 80);
+            this.buttonSearch.Location = new System.Drawing.Point(12, 119);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(221, 23);
             this.buttonSearch.TabIndex = 0;
@@ -115,7 +124,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 44);
+            this.label2.Location = new System.Drawing.Point(8, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 3;
@@ -123,12 +132,11 @@
             // 
             // textBoxTo
             // 
-            this.textBoxTo.Location = new System.Drawing.Point(62, 41);
+            this.textBoxTo.Location = new System.Drawing.Point(62, 32);
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(170, 20);
             this.textBoxTo.TabIndex = 2;
             this.textBoxTo.TextChanged += new System.EventHandler(this.textBoxTo_TextChanged);
-            this.textBoxTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTo_KeyPress);
             // 
             // labelVon
             // 
@@ -149,6 +157,7 @@
             // 
             // tabPageAbfahrt
             // 
+            this.tabPageAbfahrt.Controls.Add(this.webBrowser);
             this.tabPageAbfahrt.Controls.Add(this.buttonVerbindungSuchenAbfahrtsplan);
             this.tabPageAbfahrt.Controls.Add(this.labelAbfahrten);
             this.tabPageAbfahrt.Controls.Add(this.tableLayoutPanelAbfahrsplan);
@@ -157,10 +166,19 @@
             this.tabPageAbfahrt.Location = new System.Drawing.Point(4, 22);
             this.tabPageAbfahrt.Name = "tabPageAbfahrt";
             this.tabPageAbfahrt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAbfahrt.Size = new System.Drawing.Size(408, 377);
+            this.tabPageAbfahrt.Size = new System.Drawing.Size(438, 377);
             this.tabPageAbfahrt.TabIndex = 1;
             this.tabPageAbfahrt.Text = "Abfahrtsplan";
             this.tabPageAbfahrt.UseVisualStyleBackColor = true;
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.Location = new System.Drawing.Point(247, 0);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(188, 164);
+            this.webBrowser.TabIndex = 21;
+            this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // buttonVerbindungSuchenAbfahrtsplan
             // 
@@ -193,7 +211,7 @@
             this.tableLayoutPanelAbfahrsplan.RowCount = 2;
             this.tableLayoutPanelAbfahrsplan.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelAbfahrsplan.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelAbfahrsplan.Size = new System.Drawing.Size(402, 193);
+            this.tableLayoutPanelAbfahrsplan.Size = new System.Drawing.Size(432, 193);
             this.tableLayoutPanelAbfahrsplan.TabIndex = 20;
             // 
             // labelAbfahrtsplanVon
@@ -212,6 +230,40 @@
             this.textBoxFromAbfahrtsplan.Size = new System.Drawing.Size(170, 20);
             this.textBoxFromAbfahrtsplan.TabIndex = 11;
             this.textBoxFromAbfahrtsplan.TextChanged += new System.EventHandler(this.textBoxVonAbfahrtsplan_TextChanged);
+            // 
+            // dateTimePickerDateVerbindungen
+            // 
+            this.dateTimePickerDateVerbindungen.Location = new System.Drawing.Point(62, 58);
+            this.dateTimePickerDateVerbindungen.Name = "dateTimePickerDateVerbindungen";
+            this.dateTimePickerDateVerbindungen.Size = new System.Drawing.Size(170, 20);
+            this.dateTimePickerDateVerbindungen.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Datum";
+            // 
+            // dateTimePickerTimeVerbindungen
+            // 
+            this.dateTimePickerTimeVerbindungen.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerTimeVerbindungen.Location = new System.Drawing.Point(62, 84);
+            this.dateTimePickerTimeVerbindungen.Name = "dateTimePickerTimeVerbindungen";
+            this.dateTimePickerTimeVerbindungen.ShowUpDown = true;
+            this.dateTimePickerTimeVerbindungen.Size = new System.Drawing.Size(171, 20);
+            this.dateTimePickerTimeVerbindungen.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Zeit:";
             // 
             // ÖVinder
             // 
@@ -251,6 +303,11 @@
         private System.Windows.Forms.Label labelAbfahrtsplanVon;
         private System.Windows.Forms.TextBox textBoxFromAbfahrtsplan;
         private System.Windows.Forms.Label labelAbfahrten;
+        private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDateVerbindungen;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTimeVerbindungen;
     }
 }
 

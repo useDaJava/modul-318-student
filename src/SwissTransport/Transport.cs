@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 using Newtonsoft.Json;
+using System;
 
 namespace SwissTransport
 {
@@ -47,6 +48,20 @@ namespace SwissTransport
 
             if (responseStream != null)
             {
+                var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                var connections =
+                    JsonConvert.DeserializeObject<Connections>(readToEnd);
+                return connections;
+            }
+
+            return null;
+        }
+        public Connections GetConnections(string fromStation, string toStattion, DateTime date, DateTime time ) {
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStattion + "&date=" + date + "&time=" + time);
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null) {
                 var readToEnd = new StreamReader(responseStream).ReadToEnd();
                 var connections =
                     JsonConvert.DeserializeObject<Connections>(readToEnd);
