@@ -51,7 +51,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxMapStation = new System.Windows.Forms.TextBox();
             this.buttonShowOnMap = new System.Windows.Forms.Button();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.map = new GMap.NET.WindowsForms.GMapControl();
             this.tabControl.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -263,7 +263,7 @@
             // 
             // tabPageMap
             // 
-            this.tabPageMap.Controls.Add(this.webBrowser);
+            this.tabPageMap.Controls.Add(this.map);
             this.tabPageMap.Controls.Add(this.buttonShowOnMap);
             this.tabPageMap.Controls.Add(this.textBoxMapStation);
             this.tabPageMap.Controls.Add(this.label4);
@@ -302,15 +302,31 @@
             this.buttonShowOnMap.UseVisualStyleBackColor = true;
             this.buttonShowOnMap.Click += new System.EventHandler(this.buttonShowOnMap_Click);
             // 
-            // webBrowser
+            // map
             // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webBrowser.Location = new System.Drawing.Point(3, 61);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(432, 313);
-            this.webBrowser.TabIndex = 22;
-            this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
+            this.map.Bearing = 0F;
+            this.map.CanDragMap = true;
+            this.map.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.map.EmptyTileColor = System.Drawing.Color.Navy;
+            this.map.GrayScaleMode = false;
+            this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.map.LevelsKeepInMemmory = 5;
+            this.map.Location = new System.Drawing.Point(3, 61);
+            this.map.MarkersEnabled = true;
+            this.map.MaxZoom = 20;
+            this.map.MinZoom = 0;
+            this.map.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.map.Name = "map";
+            this.map.NegativeMode = false;
+            this.map.PolygonsEnabled = true;
+            this.map.RetryLoadTile = 0;
+            this.map.RoutesEnabled = true;
+            this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.map.ShowTileGridLines = false;
+            this.map.Size = new System.Drawing.Size(432, 313);
+            this.map.TabIndex = 23;
+            this.map.Zoom = 1D;
             // 
             // ÖVinder
             // 
@@ -357,10 +373,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerTimeVerbindungen;
         private System.Windows.Forms.TabPage tabPageMap;
-        private System.Windows.Forms.WebBrowser webBrowser;
-        private System.Windows.Forms.Button buttonShowOnMap;
         private System.Windows.Forms.TextBox textBoxMapStation;
         private System.Windows.Forms.Label label4;
+        private GMap.NET.WindowsForms.GMapControl map;
+        private System.Windows.Forms.Button buttonShowOnMap;
     }
 }
 

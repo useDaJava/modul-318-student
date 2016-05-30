@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using SwissTransport;
 using System.Diagnostics;
 using Microsoft.Win32;
+using GMap.NET;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 
 namespace ÖVinder
 {
@@ -19,13 +22,17 @@ namespace ÖVinder
         int columnCountVerbindungen = 0;
         int rowCountAbfahrtsplan = 0;
         int columnCountAbfahrtsplan = 0;
+            //create marker overlay for gmap
+        GMapOverlay markersOverlay = new GMapOverlay("markers");
         public ÖVinder() {
             InitializeComponent();
         }
 
         private void ÖVinder_Load(object sender, EventArgs e) {
-            //set Webbrowser Emulation because of outdated version
-            WebBrowserVersionEmulation();
+            //initialize GMap stuff
+            map.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
+
             //insert heading rows into tables
             insertHeaderAbfahrtsplan();
             insertHeaderVerbindungen();
@@ -68,11 +75,14 @@ namespace ÖVinder
                 rowCountAbfahrtsplan += 1;
             }
             //call showMap method
-            showMap(station);
         }
 
-        public void showMap(Station station) {
-
+        public void showOnMap(Station station) {
+            map.Position = new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate);
+            GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate),
+            GMarkerGoogleType.orange);
+            markersOverlay.Markers.Add(marker);
+            map.Overlays.Add(markersOverlay);
         }
 
         private void buttonSearch_Click(object sender, EventArgs e) {
@@ -163,32 +173,14 @@ namespace ÖVinder
 
         private void buttonShowOnMap_Click(object sender, EventArgs e) {
             Station station = transport.GetStations(textBoxMapStation.Text).StationList[0];
-            Console.WriteLine("https://www.google.ch/maps/@" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate + ",20z");
-            webBrowser.Navigate("https://www.google.ch/maps/@" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate + ",19z");
-        }
+            showOnMap(station);
+            map.Zoom = 16;
 
+        }
         private void textBoxMapStation_TextChanged(object sender, EventArgs e) {
             showAutocompleteOptions(textBoxMapStation);
         }
 
-        private static void WebBrowserVersionEmulation() {
-            //little hack on the back
-            const string BROWSER_EMULATION_KEY =
-            @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
-            //
-            // app.exe and app.vshost.exe
-            String appname = Process.GetCurrentProcess().ProcessName + ".exe";
-            
-            const int browserEmulationMode = 9999;
-
-            RegistryKey browserEmulationKey =
-                Registry.CurrentUser.OpenSubKey(BROWSER_EMULATION_KEY, RegistryKeyPermissionCheck.ReadWriteSubTree) ??
-                Registry.CurrentUser.CreateSubKey(BROWSER_EMULATION_KEY);
-
-            if (browserEmulationKey != null) {
-                browserEmulationKey.SetValue(appname, browserEmulationMode, RegistryValueKind.DWord);
-                browserEmulationKey.Close();
-            }
-        }
+        
     }
 }
