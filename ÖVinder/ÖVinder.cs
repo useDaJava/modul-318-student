@@ -21,9 +21,7 @@ namespace ÖVinder
         Share share = new Share();
         private ITransport transport;
         int rowCountVerbindungen = 0;
-        int columnCountVerbindungen = 0;
         int rowCountAbfahrtsplan = 0;
-        int columnCountAbfahrtsplan = 0;
         GMarkerGoogle marker;
         //create marker overlay for gmap
         GMapOverlay markersOverlay = new GMapOverlay("markers");
@@ -74,10 +72,9 @@ namespace ÖVinder
             rowCountAbfahrtsplan+= 1;
 
             foreach (StationBoard sb in stationBoard.Entries) {
-                columnCountAbfahrtsplan = 0;
-                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountAbfahrtsplan, rowCountAbfahrtsplan);
                 tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  sb.Stop.Departure.ToString("HH:mm")}, 
-                    columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
+                    0, rowCountAbfahrtsplan);
+                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, 1, rowCountAbfahrtsplan);
                 rowCountAbfahrtsplan++;
             }
         }
@@ -107,18 +104,17 @@ namespace ÖVinder
             DateTime departureTime;
             DateTime arrivalTime;
             foreach (Connection targetConnection in connections.ConnectionList) {
-                columnCountVerbindungen = 0;
                 departureTime = Convert.ToDateTime(targetConnection.From.Departure.ToString());
                 arrivalTime = Convert.ToDateTime(targetConnection.To.Arrival.ToString());
                 string duration = targetConnection.Duration.ToString().Substring(targetConnection.Duration.ToString().Length - 7);
 
                 //add all cols with Text to tableLayout
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.ToString("HH:mm") },
-                columnCountVerbindungen, rowCountVerbindungen);
+                0, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = arrivalTime.ToString("HH:mm") },
-                columnCountVerbindungen++, rowCountVerbindungen);
-                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = duration }, columnCountVerbindungen++, rowCountVerbindungen);
-                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = targetConnection.From.Platform }, columnCountVerbindungen++, rowCountVerbindungen);
+                1, rowCountVerbindungen);
+                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = duration }, 2, rowCountVerbindungen);
+                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = targetConnection.From.Platform }, 3, rowCountVerbindungen);
                 rowCountVerbindungen++;
             }
         }
@@ -126,7 +122,6 @@ namespace ÖVinder
         private void insertHeaderVerbindungen() {
             //set title Font
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
-            columnCountVerbindungen = 0;
             tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter},
                 0, rowCountVerbindungen);
             tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Ankunft:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
@@ -138,11 +133,10 @@ namespace ÖVinder
         }
         private void insertHeaderAbfahrtsplan() {
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
-            columnCountAbfahrtsplan = 0;
-            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Ziel:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
-                columnCountAbfahrtsplan, 0);
             tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
-                columnCountAbfahrtsplan, 0);
+                0, 0);
+            tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Ziel:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
+                1, 0);
         }
 
         private void textBoxFrom_TextChanged(object sender, EventArgs e) {
@@ -196,8 +190,6 @@ namespace ÖVinder
                     Control control = this.tableLayoutPanelVerbindungen.GetControlFromPosition(i, j);
 
                     if (control != null) {
-                        Trace.WriteLine(control.ToString());
-                        MessageBox.Show(control.Text);
                         body += control.Text + "\t";
                     }
                 }

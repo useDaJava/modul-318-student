@@ -25,9 +25,8 @@ namespace ÖVinder {
             //test account mail: modul318vfi@gmail.com
             //test account passwort: vfibeschte
 
-            var fromAddress = new MailAddress(textBoxUsername.Text, "From Name");
+            var fromAddress = new MailAddress("modul318@gmail.com", "From Name");
             var toAddress = new MailAddress(textBoxTo.Text, "To Name");
-            string fromPassword = textBoxPassword.Text;
             string subject = textBoxSubject.Text;
             string body = textBoxBody.Text;
 
@@ -37,7 +36,7 @@ namespace ÖVinder {
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                Credentials = new NetworkCredential("modul318@gmail.com", "vfibeschte")
             };
             using (var message = new MailMessage(fromAddress, toAddress) {
                 Subject = subject,
