@@ -18,7 +18,7 @@ using System.Net.Mail;
 namespace ÖVinder
 {
     public partial class ÖVinder : Form {
-        Share share = new Share();
+        private Share share = new Share();
         private ITransport transport;
         int rowCountVerbindungen = 0;
         int rowCountAbfahrtsplan = 0;
@@ -179,22 +179,26 @@ namespace ÖVinder
        
 
         private void labelShare_Click(object sender, EventArgs e) {
-            int i = 0;
-            int j = 0;
+            int currentRow = 0;
             string body = "";
             Trace.WriteLine(this.tableLayoutPanelVerbindungen.ColumnCount);
             Trace.WriteLine(this.tableLayoutPanelVerbindungen.RowCount);
 
-            for (j = 0; j <= this.tableLayoutPanelVerbindungen.RowCount; j++) {
-                for (i = 0; i <= this.tableLayoutPanelVerbindungen.ColumnCount; i++) {
-                    Control control = this.tableLayoutPanelVerbindungen.GetControlFromPosition(i, j);
-
-                    if (control != null) {
-                        body += control.Text + "\t";
-                    }
+            body += "<h1>Verbindungen von " + textBoxFrom.Text + " nach " + textBoxTo.Text + "</h1>";
+            foreach (Control c in tableLayoutPanelVerbindungen.Controls) {
+                if (currentRow != this.tableLayoutPanelVerbindungen.GetRow(c)) {
+                    currentRow = this.tableLayoutPanelVerbindungen.GetRow(c);
+                    Console.WriteLine(c.Text);
+                    body += "</tr>";
+                    body += "<tr>";
+                    body += "<td>" + c.Text + "</td>";
+                    continue;
                 }
-                body += "\r\n";
+                body += "<td>" + c.Text + "</td>";
             }
+            body = "<table border=\"1\">" + body + "</tr></table>";
+
+        
             share.setBodyText(body);
             share.Show();
 

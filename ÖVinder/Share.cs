@@ -28,7 +28,7 @@ namespace ÖVinder {
             var fromAddress = new MailAddress("modul318@gmail.com", "From Name");
             var toAddress = new MailAddress(textBoxTo.Text, "To Name");
             string subject = textBoxSubject.Text;
-            string body = textBoxBody.Text;
+            string body = this.body + textBoxBody.Text;
 
             var smtp = new SmtpClient {
                 Host = "smtp.gmail.com",
@@ -36,9 +36,10 @@ namespace ÖVinder {
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("modul318@gmail.com", "vfibeschte")
+                Credentials = new NetworkCredential("modul318vfi@gmail.com", "vfibeschte")
             };
             using (var message = new MailMessage(fromAddress, toAddress) {
+                IsBodyHtml = true,
                 Subject = subject,
                 Body = body
             }) {
@@ -51,7 +52,6 @@ namespace ÖVinder {
         }
         public void setBodyText(string body) {
             this.body = body;
-            textBoxBody.Text = body;
         }
 
         private void buttonSendMail_Click(object sender, EventArgs e) {

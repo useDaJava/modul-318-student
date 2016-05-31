@@ -77,9 +77,9 @@
             this.labelContent.AutoSize = true;
             this.labelContent.Location = new System.Drawing.Point(12, 96);
             this.labelContent.Name = "labelContent";
-            this.labelContent.Size = new System.Drawing.Size(36, 13);
+            this.labelContent.Size = new System.Drawing.Size(64, 13);
             this.labelContent.TabIndex = 5;
-            this.labelContent.Text = "Inhalt:";
+            this.labelContent.Text = "Bemerkung:";
             // 
             // buttonSendMail
             // 
@@ -107,7 +107,7 @@
             this.MaximumSize = new System.Drawing.Size(470, 321);
             this.MinimumSize = new System.Drawing.Size(470, 321);
             this.Name = "Share";
-            this.Text = "Share";
+            this.Text = "Teilen";
             this.Load += new System.EventHandler(this.Share_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
