@@ -39,18 +39,21 @@ namespace ÖVinder
             //insert heading rows into tables
             insertHeaderAbfahrtsplan();
             insertHeaderVerbindungen();
+
             //set autocomplete mode and source
-            textBoxMapStation.AutoCompleteMode = AutoCompleteMode.Suggest;
-            textBoxMapStation.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            textBoxFrom.AutoCompleteMode = AutoCompleteMode.Suggest;
-            textBoxFrom.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            textBoxTo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            textBoxTo.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            textBoxFromAbfahrtsplan.AutoCompleteMode = AutoCompleteMode.Suggest;
-            textBoxFromAbfahrtsplan.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            setAutoCompleteOnTextBox(textBoxMapStation);
+            setAutoCompleteOnTextBox(textBoxFrom);
+            setAutoCompleteOnTextBox(textBoxTo);
+            setAutoCompleteOnTextBox(textBoxFromAbfahrtsplan);
+
             //set autoscroll to true
             tableLayoutPanelAbfahrsplan.AutoScroll = true;
             tableLayoutPanelVerbindungen.AutoScroll = true;
+        }
+
+        public void setAutoCompleteOnTextBox(TextBox textBox) {
+            textBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
 
