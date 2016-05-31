@@ -23,7 +23,6 @@ namespace ÖVinder
         int rowCountAbfahrtsplan = 0;
         int columnCountAbfahrtsplan = 0;
         GMarkerGoogle marker;
-        GMarkerGoogle homeMarker;
         //create marker overlay for gmap
         GMapOverlay markersOverlay = new GMapOverlay("markers");
         public ÖVinder() {
@@ -126,10 +125,14 @@ namespace ÖVinder
             //set title Font
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
             columnCountVerbindungen = 0;
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter}, 0, rowCountVerbindungen);
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Ankunft:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, 1, rowCountVerbindungen);
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Dauer:" , Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, 2, rowCountVerbindungen);
-            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Gleis:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter }, 3, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter},
+                0, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Ankunft:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
+                1, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Dauer:" , Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
+                2, rowCountVerbindungen);
+            tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = "Gleis:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
+                3, rowCountVerbindungen);
         }
         private void insertHeaderAbfahrtsplan() {
             Font titleFont = new Font(Font.Name, 12, FontStyle.Bold);
@@ -176,7 +179,5 @@ namespace ÖVinder
         private void textBoxMapStation_TextChanged(object sender, EventArgs e) {
             showAutocompleteOptions(textBoxMapStation);
         }
-
-        
     }
 }
