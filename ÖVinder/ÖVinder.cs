@@ -13,10 +13,12 @@ using Microsoft.Win32;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using System.Net.Mail;
 
 namespace ÖVinder
 {
     public partial class ÖVinder : Form {
+        Share share = new Share();
         private ITransport transport;
         int rowCountVerbindungen = 0;
         int columnCountVerbindungen = 0;
@@ -63,7 +65,7 @@ namespace ÖVinder
 
         private void searchAbfahrten() {
             transport = new Transport();
-            Station station = transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList[0];
+            Station station = transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList.First();
             var stationBoard = transport.GetStationBoard(station.Name, station.Id);
 
             //clear table, delete all content from tableLayoutPanelAbfahrsplan
@@ -171,13 +173,35 @@ namespace ÖVinder
         }
 
         private void buttonShowOnMap_Click(object sender, EventArgs e) {
-            Station station = transport.GetStations(textBoxMapStation.Text).StationList[0];
+            Station station = transport.GetStations(textBoxMapStation.Text).StationList.First();
             showOnMap(station);
             map.Zoom = 16;
 
         }
         private void textBoxMapStation_TextChanged(object sender, EventArgs e) {
             showAutocompleteOptions(textBoxMapStation);
+        }
+
+        private void sendMail(string server) {
+            string from = "";
+            string to = "";
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "";
+            message.Body = "";
+            SmtpClient client = new SmtpClient(server);
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("username", "password");
+            try {
+                client.Send(message);
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        private void label5_Click(object sender, EventArgs e) {
+            share.Show();
+
         }
     }
 }

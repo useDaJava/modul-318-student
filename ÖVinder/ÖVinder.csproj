@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Share.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Share.Designer.cs">
+      <DependentUpon>Share.cs</DependentUpon>
+    </Compile>
     <Compile Include="ÖVinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Share.resx">
+      <DependentUpon>Share.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ÖVinder.resx">
       <DependentUpon>ÖVinder.cs</DependentUpon>
     </EmbeddedResource>

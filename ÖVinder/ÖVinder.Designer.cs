@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ÖVinder));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageVerbindungen = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +53,7 @@
             this.buttonShowOnMap = new System.Windows.Forms.Button();
             this.textBoxMapStation = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -72,6 +74,7 @@
             // 
             // tabPageVerbindungen
             // 
+            this.tabPageVerbindungen.Controls.Add(this.label5);
             this.tabPageVerbindungen.Controls.Add(this.label3);
             this.tabPageVerbindungen.Controls.Add(this.dateTimePickerTimeVerbindungen);
             this.tabPageVerbindungen.Controls.Add(this.label1);
@@ -329,6 +332,17 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Station:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
+            this.label5.Location = new System.Drawing.Point(410, 6);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(22, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "     ";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // ÖVinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +392,7 @@
         private System.Windows.Forms.Label label4;
         private GMap.NET.WindowsForms.GMapControl map;
         private System.Windows.Forms.Button buttonShowOnMap;
+        private System.Windows.Forms.Label label5;
     }
 }
 
