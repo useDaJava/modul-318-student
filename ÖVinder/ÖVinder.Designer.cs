@@ -53,7 +53,7 @@
             this.buttonShowOnMap = new System.Windows.Forms.Button();
             this.textBoxMapStation = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelShare = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             // tabPageVerbindungen
             // 
-            this.tabPageVerbindungen.Controls.Add(this.label5);
+            this.tabPageVerbindungen.Controls.Add(this.labelShare);
             this.tabPageVerbindungen.Controls.Add(this.label3);
             this.tabPageVerbindungen.Controls.Add(this.dateTimePickerTimeVerbindungen);
             this.tabPageVerbindungen.Controls.Add(this.label1);
@@ -332,16 +332,16 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Station:";
             // 
-            // label5
+            // labelShare
             // 
-            this.label5.AutoSize = true;
-            this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
-            this.label5.Location = new System.Drawing.Point(410, 6);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(22, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "     ";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.labelShare.AutoSize = true;
+            this.labelShare.Image = ((System.Drawing.Image)(resources.GetObject("labelShare.Image")));
+            this.labelShare.Location = new System.Drawing.Point(410, 6);
+            this.labelShare.Name = "labelShare";
+            this.labelShare.Size = new System.Drawing.Size(22, 13);
+            this.labelShare.TabIndex = 14;
+            this.labelShare.Text = "     ";
+            this.labelShare.Click += new System.EventHandler(this.labelShare_Click);
             // 
             // ÖVinder
             // 
@@ -392,7 +392,7 @@
         private System.Windows.Forms.Label label4;
         private GMap.NET.WindowsForms.GMapControl map;
         private System.Windows.Forms.Button buttonShowOnMap;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelShare;
     }
 }
 

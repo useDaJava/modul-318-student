@@ -23,81 +23,82 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxTo = new System.Windows.Forms.TextBox();
+            this.textBoxSubject = new System.Windows.Forms.TextBox();
+            this.textBoxBody = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.labelContent = new System.Windows.Forms.Label();
+            this.textBoxUsername = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.buttonSendMail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxTo
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(142, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxTo.Location = new System.Drawing.Point(12, 25);
+            this.textBoxTo.Name = "textBoxTo";
+            this.textBoxTo.Size = new System.Drawing.Size(142, 20);
+            this.textBoxTo.TabIndex = 0;
             // 
-            // textBox2
+            // textBoxSubject
             // 
-            this.textBox2.Location = new System.Drawing.Point(15, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(142, 20);
-            this.textBox2.TabIndex = 1;
+            this.textBoxSubject.Location = new System.Drawing.Point(15, 64);
+            this.textBoxSubject.Name = "textBoxSubject";
+            this.textBoxSubject.Size = new System.Drawing.Size(142, 20);
+            this.textBoxSubject.TabIndex = 1;
             // 
-            // textBox3
+            // textBoxBody
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 112);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(438, 150);
-            this.textBox3.TabIndex = 2;
+            this.textBoxBody.Location = new System.Drawing.Point(12, 112);
+            this.textBoxBody.Multiline = true;
+            this.textBoxBody.Name = "textBoxBody";
+            this.textBoxBody.Size = new System.Drawing.Size(438, 150);
+            this.textBoxBody.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Empfänger";
+            this.label1.Text = "Empfänger:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Betreff";
+            this.label2.Text = "Betreff:";
             // 
-            // label3
+            // labelContent
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 96);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.labelContent.AutoSize = true;
+            this.labelContent.Location = new System.Drawing.Point(12, 96);
+            this.labelContent.Name = "labelContent";
+            this.labelContent.Size = new System.Drawing.Size(36, 13);
+            this.labelContent.TabIndex = 5;
+            this.labelContent.Text = "Inhalt:";
             // 
-            // textBox4
+            // textBoxUsername
             // 
-            this.textBox4.Location = new System.Drawing.Point(277, 25);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(142, 20);
-            this.textBox4.TabIndex = 6;
+            this.textBoxUsername.Location = new System.Drawing.Point(277, 25);
+            this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.Size = new System.Drawing.Size(142, 20);
+            this.textBoxUsername.TabIndex = 6;
             // 
-            // textBox5
+            // textBoxPassword
             // 
-            this.textBox5.Location = new System.Drawing.Point(277, 64);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.PasswordChar = '*';
-            this.textBox5.Size = new System.Drawing.Size(142, 20);
-            this.textBox5.TabIndex = 7;
+            this.textBoxPassword.Location = new System.Drawing.Point(277, 64);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(142, 20);
+            this.textBoxPassword.TabIndex = 7;
             // 
             // label4
             // 
@@ -117,23 +118,34 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Mail Passwort:";
             // 
+            // buttonSendMail
+            // 
+            this.buttonSendMail.Location = new System.Drawing.Point(12, 268);
+            this.buttonSendMail.Name = "buttonSendMail";
+            this.buttonSendMail.Size = new System.Drawing.Size(438, 23);
+            this.buttonSendMail.TabIndex = 10;
+            this.buttonSendMail.Text = "Senden";
+            this.buttonSendMail.UseVisualStyleBackColor = true;
+            // 
             // Share
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 274);
+            this.ClientSize = new System.Drawing.Size(462, 294);
+            this.Controls.Add(this.buttonSendMail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.textBoxUsername);
+            this.Controls.Add(this.labelContent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxBody);
+            this.Controls.Add(this.textBoxSubject);
+            this.Controls.Add(this.textBoxTo);
             this.Name = "Share";
             this.Text = "Share";
+            this.Load += new System.EventHandler(this.Share_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,15 +153,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxTo;
+        private System.Windows.Forms.TextBox textBoxSubject;
+        private System.Windows.Forms.TextBox textBoxBody;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label labelContent;
+        private System.Windows.Forms.TextBox textBoxUsername;
+        private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonSendMail;
     }
 }

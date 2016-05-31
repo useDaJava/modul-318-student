@@ -182,24 +182,28 @@ namespace ÖVinder
             showAutocompleteOptions(textBoxMapStation);
         }
 
-        private void sendMail(string server) {
-            string from = "";
-            string to = "";
-            MailMessage message = new MailMessage(from, to);
-            message.Subject = "";
-            message.Body = "";
-            SmtpClient client = new SmtpClient(server);
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("username", "password");
-            try {
-                client.Send(message);
-            } catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+       
+
+        private void labelShare_Click(object sender, EventArgs e) {
+            int i = 0;
+            int j = 0;
+            string body = "";
+            Trace.WriteLine(this.tableLayoutPanelVerbindungen.ColumnCount);
+            Trace.WriteLine(this.tableLayoutPanelVerbindungen.RowCount);
+
+            for (j = 0; j <= this.tableLayoutPanelVerbindungen.RowCount; j++) {
+                for (i = 0; i <= this.tableLayoutPanelVerbindungen.ColumnCount; i++) {
+                    Control control = this.tableLayoutPanelVerbindungen.GetControlFromPosition(i, j);
+
+                    if (control != null) {
+                        Trace.WriteLine(control.ToString());
+                        MessageBox.Show(control.Text);
+                        body += control.Text + "\t";
+                    }
+                }
+                body += "\r\n";
             }
-        }
-
-
-        private void label5_Click(object sender, EventArgs e) {
+            share.setBodyText(body);
             share.Show();
 
         }
