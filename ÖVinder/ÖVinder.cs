@@ -65,7 +65,6 @@ namespace ÖVinder
         private void searchAbfahrten() {
             transport = new Transport();
             Station station = transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList[0];
-            transport.GetStations(textBoxFromAbfahrtsplan.Text).StationList.FirstOrDefault(x => x.Name == textBoxFromAbfahrtsplan.Text);
             var stationBoard = transport.GetStationBoard(station.Name, station.Id);
 
             //clear table, delete all content from tableLayoutPanelAbfahrsplan
@@ -78,9 +77,8 @@ namespace ÖVinder
                 tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountAbfahrtsplan, rowCountAbfahrtsplan);
                 tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  sb.Stop.Departure.ToString("HH:mm")}, 
                     columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
-                rowCountAbfahrtsplan += 1;
+                rowCountAbfahrtsplan++;
             }
-            //call showMap method
         }
 
         public void showOnMap(Station station) {
@@ -121,7 +119,6 @@ namespace ÖVinder
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = duration }, columnCountVerbindungen++, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = targetConnection.From.Platform }, columnCountVerbindungen++, rowCountVerbindungen);
                 rowCountVerbindungen++;
-
             }
         }
 
