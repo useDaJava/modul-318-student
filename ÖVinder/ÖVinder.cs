@@ -22,7 +22,9 @@ namespace ÖVinder
         int columnCountVerbindungen = 0;
         int rowCountAbfahrtsplan = 0;
         int columnCountAbfahrtsplan = 0;
-            //create marker overlay for gmap
+        GMarkerGoogle marker;
+        GMarkerGoogle homeMarker;
+        //create marker overlay for gmap
         GMapOverlay markersOverlay = new GMapOverlay("markers");
         public ÖVinder() {
             InitializeComponent();
@@ -30,9 +32,10 @@ namespace ÖVinder
 
         private void ÖVinder_Load(object sender, EventArgs e) {
             //initialize GMap stuff
-            map.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+            map.MapProvider = GMap.NET.MapProviders.GoogleHybridMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
-
+            map.Position = new PointLatLng(46.7976544, 8.2275602);
+            map.ShowCenter = false;
             //insert heading rows into tables
             insertHeaderAbfahrtsplan();
             insertHeaderVerbindungen();
@@ -70,7 +73,7 @@ namespace ÖVinder
             foreach (StationBoard sb in stationBoard.Entries) {
                 columnCountAbfahrtsplan = 0;
                 tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = sb.To.ToString() }, columnCountAbfahrtsplan, rowCountAbfahrtsplan);
-                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  sb.Stop.Departure.Hour.ToString() + ":" + addLeadingZero(sb.Stop.Departure.Minute)}, 
+                tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text =  sb.Stop.Departure.ToString("HH:mm")}, 
                     columnCountAbfahrtsplan++, rowCountAbfahrtsplan);
                 rowCountAbfahrtsplan += 1;
             }
@@ -78,8 +81,9 @@ namespace ÖVinder
         }
 
         public void showOnMap(Station station) {
+            markersOverlay.Markers.Remove(marker);
             map.Position = new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate);
-            GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate),
+            marker = new GMarkerGoogle(new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate),
             GMarkerGoogleType.orange);
             markersOverlay.Markers.Add(marker);
             map.Overlays.Add(markersOverlay);
@@ -107,9 +111,9 @@ namespace ÖVinder
                 string duration = targetConnection.Duration.ToString().Substring(targetConnection.Duration.ToString().Length - 7);
 
                 //add all cols with Text to tableLayout
-                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.Hour.ToString() + ":" + addLeadingZero(departureTime.Minute) },
+                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = departureTime.ToString("HH:mm") },
                 columnCountVerbindungen, rowCountVerbindungen);
-                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = arrivalTime.Hour.ToString() + ":" + addLeadingZero(arrivalTime.Minute) },
+                tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = arrivalTime.ToString("HH:mm") },
                 columnCountVerbindungen++, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = duration }, columnCountVerbindungen++, rowCountVerbindungen);
                 tableLayoutPanelVerbindungen.Controls.Add(new Label() { Text = targetConnection.From.Platform }, columnCountVerbindungen++, rowCountVerbindungen);
@@ -134,14 +138,6 @@ namespace ÖVinder
                 columnCountAbfahrtsplan, 0);
             tableLayoutPanelAbfahrsplan.Controls.Add(new Label() { Text = "Abfahrt:", Font = titleFont, AutoSize = false, TextAlign = ContentAlignment.MiddleCenter },
                 columnCountAbfahrtsplan, 0);
-        }
-
-        private string addLeadingZero(int numberToAddZero) {
-            if (numberToAddZero < 10) {
-                return "0" + numberToAddZero;
-            } else {
-                return numberToAddZero.ToString();
-            }
         }
 
         private void textBoxFrom_TextChanged(object sender, EventArgs e) {

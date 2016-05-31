@@ -48,10 +48,10 @@
             this.labelAbfahrtsplanVon = new System.Windows.Forms.Label();
             this.textBoxFromAbfahrtsplan = new System.Windows.Forms.TextBox();
             this.tabPageMap = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxMapStation = new System.Windows.Forms.TextBox();
-            this.buttonShowOnMap = new System.Windows.Forms.Button();
             this.map = new GMap.NET.WindowsForms.GMapControl();
+            this.buttonShowOnMap = new System.Windows.Forms.Button();
+            this.textBoxMapStation = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -107,7 +107,7 @@
             this.dateTimePickerTimeVerbindungen.Name = "dateTimePickerTimeVerbindungen";
             this.dateTimePickerTimeVerbindungen.ShowUpDown = true;
             this.dateTimePickerTimeVerbindungen.Size = new System.Drawing.Size(171, 20);
-            this.dateTimePickerTimeVerbindungen.TabIndex = 11;
+            this.dateTimePickerTimeVerbindungen.TabIndex = 4;
             // 
             // label1
             // 
@@ -123,7 +123,7 @@
             this.dateTimePickerDateVerbindungen.Location = new System.Drawing.Point(62, 58);
             this.dateTimePickerDateVerbindungen.Name = "dateTimePickerDateVerbindungen";
             this.dateTimePickerDateVerbindungen.Size = new System.Drawing.Size(170, 20);
-            this.dateTimePickerDateVerbindungen.TabIndex = 1;
+            this.dateTimePickerDateVerbindungen.TabIndex = 2;
             // 
             // buttonSearch
             // 
@@ -175,7 +175,7 @@
             this.textBoxTo.Location = new System.Drawing.Point(62, 32);
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(170, 20);
-            this.textBoxTo.TabIndex = 2;
+            this.textBoxTo.TabIndex = 1;
             this.textBoxTo.TextChanged += new System.EventHandler(this.textBoxTo_TextChanged);
             // 
             // labelVon
@@ -275,33 +275,6 @@
             this.tabPageMap.Text = "Karte";
             this.tabPageMap.UseVisualStyleBackColor = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Station:";
-            // 
-            // textBoxMapStation
-            // 
-            this.textBoxMapStation.Location = new System.Drawing.Point(62, 6);
-            this.textBoxMapStation.Name = "textBoxMapStation";
-            this.textBoxMapStation.Size = new System.Drawing.Size(170, 20);
-            this.textBoxMapStation.TabIndex = 1;
-            this.textBoxMapStation.TextChanged += new System.EventHandler(this.textBoxMapStation_TextChanged);
-            // 
-            // buttonShowOnMap
-            // 
-            this.buttonShowOnMap.Location = new System.Drawing.Point(11, 32);
-            this.buttonShowOnMap.Name = "buttonShowOnMap";
-            this.buttonShowOnMap.Size = new System.Drawing.Size(221, 23);
-            this.buttonShowOnMap.TabIndex = 2;
-            this.buttonShowOnMap.Text = "Station auf Karte anzeigen";
-            this.buttonShowOnMap.UseVisualStyleBackColor = true;
-            this.buttonShowOnMap.Click += new System.EventHandler(this.buttonShowOnMap_Click);
-            // 
             // map
             // 
             this.map.Bearing = 0F;
@@ -326,7 +299,34 @@
             this.map.ShowTileGridLines = false;
             this.map.Size = new System.Drawing.Size(432, 313);
             this.map.TabIndex = 23;
-            this.map.Zoom = 1D;
+            this.map.Zoom = 7D;
+            // 
+            // buttonShowOnMap
+            // 
+            this.buttonShowOnMap.Location = new System.Drawing.Point(11, 32);
+            this.buttonShowOnMap.Name = "buttonShowOnMap";
+            this.buttonShowOnMap.Size = new System.Drawing.Size(221, 23);
+            this.buttonShowOnMap.TabIndex = 2;
+            this.buttonShowOnMap.Text = "Station auf Karte anzeigen";
+            this.buttonShowOnMap.UseVisualStyleBackColor = true;
+            this.buttonShowOnMap.Click += new System.EventHandler(this.buttonShowOnMap_Click);
+            // 
+            // textBoxMapStation
+            // 
+            this.textBoxMapStation.Location = new System.Drawing.Point(62, 6);
+            this.textBoxMapStation.Name = "textBoxMapStation";
+            this.textBoxMapStation.Size = new System.Drawing.Size(170, 20);
+            this.textBoxMapStation.TabIndex = 1;
+            this.textBoxMapStation.TextChanged += new System.EventHandler(this.textBoxMapStation_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Station:";
             // 
             // ÖVinder
             // 
