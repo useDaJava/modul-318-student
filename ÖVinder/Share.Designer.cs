@@ -105,9 +105,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(274, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Mail Username:";
+            this.label4.Text = "GMail Username:";
             // 
             // label5
             // 
@@ -126,6 +126,7 @@
             this.buttonSendMail.TabIndex = 10;
             this.buttonSendMail.Text = "Senden";
             this.buttonSendMail.UseVisualStyleBackColor = true;
+            this.buttonSendMail.Click += new System.EventHandler(this.buttonSendMail_Click);
             // 
             // Share
             // 
