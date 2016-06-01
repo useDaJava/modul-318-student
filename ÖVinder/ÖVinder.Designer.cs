@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ÖVinder));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageVerbindungen = new System.Windows.Forms.TabPage();
+            this.labelShare = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerTimeVerbindungen = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.buttonShowOnMap = new System.Windows.Forms.Button();
             this.textBoxMapStation = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.labelShare = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageVerbindungen.SuspendLayout();
             this.tabPageAbfahrt.SuspendLayout();
@@ -93,6 +93,17 @@
             this.tabPageVerbindungen.TabIndex = 0;
             this.tabPageVerbindungen.Text = "Verbindungen";
             this.tabPageVerbindungen.UseVisualStyleBackColor = true;
+            // 
+            // labelShare
+            // 
+            this.labelShare.AutoSize = true;
+            this.labelShare.Image = ((System.Drawing.Image)(resources.GetObject("labelShare.Image")));
+            this.labelShare.Location = new System.Drawing.Point(410, 6);
+            this.labelShare.Name = "labelShare";
+            this.labelShare.Size = new System.Drawing.Size(22, 13);
+            this.labelShare.TabIndex = 14;
+            this.labelShare.Text = "     ";
+            this.labelShare.Click += new System.EventHandler(this.labelShare_Click);
             // 
             // label3
             // 
@@ -331,17 +342,6 @@
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Station:";
-            // 
-            // labelShare
-            // 
-            this.labelShare.AutoSize = true;
-            this.labelShare.Image = ((System.Drawing.Image)(resources.GetObject("labelShare.Image")));
-            this.labelShare.Location = new System.Drawing.Point(410, 6);
-            this.labelShare.Name = "labelShare";
-            this.labelShare.Size = new System.Drawing.Size(22, 13);
-            this.labelShare.TabIndex = 14;
-            this.labelShare.Text = "     ";
-            this.labelShare.Click += new System.EventHandler(this.labelShare_Click);
             // 
             // ÖVinder
             // 
