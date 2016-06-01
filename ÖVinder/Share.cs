@@ -25,8 +25,8 @@ namespace ÖVinder {
             //test account mail: modul318vfi@gmail.com
             //test account passwort: vfibeschte
 
-            var fromAddress = new MailAddress("modul318@gmail.com", "From Name");
-            var toAddress = new MailAddress(textBoxTo.Text, "To Name");
+            var fromAddress = new MailAddress("modul318@gmail.com", "ÖVinder");
+            var toAddress = new MailAddress(textBoxTo.Text, "Jemand möchte Ihnen eine Verbindung zeigen");
             string subject = textBoxSubject.Text;
             string body = this.body + textBoxBody.Text;
 
@@ -47,15 +47,13 @@ namespace ÖVinder {
             }
         }
 
-        private void Share_Load(object sender, EventArgs e) {
-            
-        }
         public void setBodyText(string body) {
             this.body = body;
         }
 
         private void buttonSendMail_Click(object sender, EventArgs e) {
             sendMail();
+            this.Close();
         }
     }
 }

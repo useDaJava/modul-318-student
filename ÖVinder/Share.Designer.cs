@@ -108,7 +108,6 @@
             this.MinimumSize = new System.Drawing.Size(470, 321);
             this.Name = "Share";
             this.Text = "Teilen";
-            this.Load += new System.EventHandler(this.Share_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
