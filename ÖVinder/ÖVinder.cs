@@ -181,14 +181,11 @@ namespace ÖVinder
         private void labelShare_Click(object sender, EventArgs e) {
             int currentRow = 0;
             string body = "";
-            Trace.WriteLine(this.tableLayoutPanelVerbindungen.ColumnCount);
-            Trace.WriteLine(this.tableLayoutPanelVerbindungen.RowCount);
 
             body += "<h1>Verbindungen von " + textBoxFrom.Text + " nach " + textBoxTo.Text + "</h1>";
             foreach (Control c in tableLayoutPanelVerbindungen.Controls) {
                 if (currentRow != this.tableLayoutPanelVerbindungen.GetRow(c)) {
                     currentRow = this.tableLayoutPanelVerbindungen.GetRow(c);
-                    Console.WriteLine(c.Text);
                     body += "</tr>";
                     body += "<tr>";
                     body += "<td>" + c.Text + "</td>";
